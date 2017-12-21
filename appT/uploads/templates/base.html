@@ -2,9 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Simple File Upload</title>
+    <title>torioux</title>
   </head>
   <body>
+  	<h1 align="center">Object detection App - Torioux</h1>
+  	<table style="width:100%" align="center">
+
+	    <th>Fuente: PASCAL VOC 2007</th>
+	    <td>Reconoce 20 objetos distintos:
+		<ul>
+		<li>Person: person</li>
+		<li>Animal: bird, cat, cow, dog, horse, sheep</li>
+		<li>Vehicle: aeroplane, bicycle, boat, bus, car, motorbike, train</li>
+		<li>Indoor: bottle, chair, dining table, potted plant, sofa, tv/monitor</li>
+		<p>Train/validation/test: 9,963 images containing 24,640 annotated objects.</p>
+		</ul>
+		</td> 
+	</table>
     {% block content %}
     {% endblock %}
   </body>

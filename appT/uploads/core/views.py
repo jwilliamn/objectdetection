@@ -44,11 +44,17 @@ def simple_upload(request):
         model = os.path.join(settings.RES_ROOT, model_)
         print("settings.RES_ROOT",  settings.RES_ROOT)
         print("settings.RES_ROOT", model)
-        pred = detection(image, prototxt, model)
-        return render(request, 'core/process.html', {
-            'uploaded_file_url': uploaded_file_url,
-            'pred': pred
-        })
+        succ, pred = detection(image, prototxt, model)
+        print("status: ", succ)
+        if succ == 1:
+            return render(request, 'core/process.html', {
+                'uploaded_file_url': uploaded_file_url,
+                'pred': pred
+            })
+        else:
+            return render(request, 'core/error.html', {
+                'uploaded_file_url': uploaded_file_url
+            })
     return render(request, 'core/simple_upload.html')
 
 def process(request):
@@ -85,6 +91,7 @@ def detection(image, prototxt, model):
     net.setInput(blob)
     detections = net.forward()
 
+    succ = 0
     # Loop over the detections
     for i in np.arange(0, detections.shape[2]):
         confidence = detections[0, 0, i, 2]
@@ -104,8 +111,11 @@ def detection(image, prototxt, model):
             else:
                 y = ini_y + 10
             newI = cv2.putText(image, label, (ini_x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[id_label], 2)
+            succ = 1
+        else:
+            succ = 0
 
-    cv2.imwrite(os.path.join(output, "predicted.png"), newI)
+    cv2.imwrite(os.path.join(output, "predicted.png"), image)
     #plt.imshow(newI, cmap=plt.cm.gray)
     #plt.show()
-    return os.path.join(settings.OUT_URL, "predicted.png")
+    return succ, os.path.join(settings.OUT_URL, "predicted.png")

@@ -3,11 +3,12 @@
 {% load static %}
 
 {% block content %}
-  <h1>Processed</h1>
-  <p>Original image: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+<hr>
+  <h2 align="center">Image processed!</h2>
+  <p align="center">Original image: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% if pred %}
-    <p>Processed image: <a href="{{ pred }}">{{ pred }}</a></p>
+    <p align="center">Processed image: <a href="{{ pred }}">{{ pred }}</a></p>
   {% endif %}
 
-  <p><a href="{% url 'home' %}">Return to home</a></p>
+  <p align="center"><a href="{% url 'home' %}">Volver a inicio</a></p>
 {% endblock %}

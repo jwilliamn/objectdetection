@@ -1,16 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <ul>
-    <li>
-      <a href="{% url 'simple_upload' %}">Simple Upload</a>
-    </li>
-    <li>
-      <a href="{% url 'model_form_upload' %}">Model Form Upload</a>
-    </li>
-  </ul>
 
-  <p>Uploaded files:</p>
+  <p align="center"><th><a href="{% url 'simple_upload' %}">Probar aplicaciòn</a></th></p>
+
+  
+  <p></p>
   <ul>
     {% for obj in documents %}
       <li>

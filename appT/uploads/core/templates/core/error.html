@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <h1 align="center">Attention!</h1>
+  <p align="center">Image: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a> No pudo ser procesado</p>
+
+  <p align="center">Intente con otra imagen que contenga algun objeto que se muestra en la descripciòn</p>
+
+  <p align="center"><a href="{% url 'home' %}">Probar otra imagen</a></p>
+{% endblock %}
