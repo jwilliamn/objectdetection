@@ -8,6 +8,8 @@
   <p align="center">Original image: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% if pred %}
     <p align="center">Processed image: <a href="{{ pred }}">{{ pred }}</a></p>
+    <p align="center">Coordinates: x={{ inix }} y={{ iniy }}</p>
+    <p align="center">Size: {{ size }}</p>
   {% endif %}
 
   <p align="center"><a href="{% url 'home' %}">Volver a inicio</a></p>

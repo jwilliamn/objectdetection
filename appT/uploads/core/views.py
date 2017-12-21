@@ -44,12 +44,15 @@ def simple_upload(request):
         model = os.path.join(settings.RES_ROOT, model_)
         print("settings.RES_ROOT",  settings.RES_ROOT)
         print("settings.RES_ROOT", model)
-        succ, pred = detection(image, prototxt, model)
+        succ, pred, inix, iniy, size = detection(image, prototxt, model)
         print("status: ", succ)
         if succ == 1:
             return render(request, 'core/process.html', {
                 'uploaded_file_url': uploaded_file_url,
-                'pred': pred
+                'pred': pred,
+                'inix':inix,
+                'iniy': iniy,
+                'size':size
             })
         else:
             return render(request, 'core/error.html', {
@@ -92,6 +95,7 @@ def detection(image, prototxt, model):
     detections = net.forward()
 
     succ = 0
+    ini_x, ini_y = 0, 0
     # Loop over the detections
     for i in np.arange(0, detections.shape[2]):
         confidence = detections[0, 0, i, 2]
@@ -118,4 +122,4 @@ def detection(image, prototxt, model):
     cv2.imwrite(os.path.join(output, "predicted.png"), image)
     #plt.imshow(newI, cmap=plt.cm.gray)
     #plt.show()
-    return succ, os.path.join(settings.OUT_URL, "predicted.png")
+    return succ, os.path.join(settings.OUT_URL, "predicted.png"), ini_x, ini_y, (end_y-ini_y)
