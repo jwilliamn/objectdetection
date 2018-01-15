@@ -132,3 +132,7 @@ OUT_ROOT = os.path.join(BASE_DIR, 'output')
 
 RES_URL = '/resources/'
 RES_ROOT = os.path.join(BASE_DIR, 'resources')
+
+OUTCNTK_URL = '/uploads/core/Output/Grocery/'
+OUTCNTK_ROOT = os.path.join(BASE_DIR, 'uploads/core/Output/Grocery')
+

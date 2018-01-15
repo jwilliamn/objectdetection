@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<hr>
+  <h2 align="center">Output of Trained Grocery Dataset!</h2>
+  <p align="center"><a href="{% url 'home' %}">Volver a inicio</a></p>
+  {% for image in images %}
+  	<p align="center">Processed image: <a href="/uploads/core/Output/Grocery/{{image}}">{{ image }}</a></p>
+  	<center><img src='/uploads/core/Output/Grocery/{{image}}' align="middle"></center>
+  {% endfor %}
+
+  <p align="center"><a href="{% url 'home' %}">Volver a inicio</a></p>
+{% endblock %}

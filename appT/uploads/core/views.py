@@ -12,6 +12,8 @@ import argparse
 import cv2
 import os
 
+from os import listdir
+from os.path import isfile, join
 
 # Initial settings
 #image = "images/test.jpg"
@@ -26,11 +28,28 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
     "sofa", "train", "tvmonitor"]
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
+#Cntk settings
+path_out = "uploads/core/Output/"
+out_dir = os.path.join(settings.BASE_DIR, path_out)
+
 
 def home(request):
     documents = Document.objects.all()
     return render(request, 'core/home.html', { 'documents': documents })
 
+
+def demo_cntk(request):
+    if out_dir:
+        print("out_dir",  out_dir)
+        img_list = [f for f in listdir(out_dir) if isfile(join(out_dir, f))]
+        print("Images:", img_list)        
+        
+        return render(request, 'core/results.html', {
+            'out_dir': out_dir,
+            'images': img_list
+            })
+        
+    return render(request, 'core/error_cntk.html')
 
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
