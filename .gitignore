@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#Pretrained models
+appT/PretrainedModels/AlexNet_ImageNet_Caffe.model
+
 # C extensions
 *.so
 
