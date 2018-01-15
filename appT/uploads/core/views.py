@@ -15,8 +15,8 @@ import os
 from os import listdir
 from os.path import isfile, join
 
-from FastRCNN_train import prepare, train_fast_rcnn
-from FastRCNN_eval import compute_test_set_aps, FastRCNN_Evaluator
+from uploads.core.FastRCNN_train import prepare, train_fast_rcnn
+from uploads.core.FastRCNN_eval import compute_test_set_aps, FastRCNN_Evaluator
 from utils.config_helpers import merge_configs
 from utils.plot_helpers import plot_test_set_results
 
@@ -39,7 +39,7 @@ out_dir = os.path.join(settings.BASE_DIR, path_out)
 
 def get_configuration():
     # load configs for detector, base network and data set
-    from FastRCNN_config import cfg as detector_cfg
+    from uploads.core.FastRCNN_config import cfg as detector_cfg
     # for VGG16 base model use:         from utils.configs.VGG16_config import cfg as network_cfg
     # for AlexNet base model use:       from utils.configs.AlexNet_config import cfg as network_cfg
     from utils.configs.AlexNet_config import cfg as network_cfg
@@ -77,7 +77,7 @@ def home(request):
 
 
 def demo_cntk(request):
-    cntkDemo()
+    #cntkDemo()
     if out_dir:
         print("out_dir",  out_dir)
         img_list = [f for f in listdir(out_dir) if isfile(join(out_dir, f))]
