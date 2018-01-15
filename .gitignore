@@ -5,6 +5,7 @@ __pycache__/
 
 #Pretrained models
 appT/PretrainedModels/AlexNet_ImageNet_Caffe.model
+appT/uploads/core/Output/fast_rcnn_eval_AlexNet.model
 
 # C extensions
 *.so
