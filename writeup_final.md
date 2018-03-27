@@ -40,13 +40,12 @@ And here's a lovely image after running the initial `motion_planning.py` script.
 To accomplish this I used numpy `genfromtxt` function and passed `max_rows=1` to read the first line as string. In order to get the values and store it as floating points, first I split the string, which gives me the name and value of the latitude and longitude, then I convert to floating point the numerical value.
 
 Here is the code of this part, it also is included in the `motion_planning.py` script from line 128 to 131.
-{% highlight python %}
+```python
 # TODO: read lat0, lon0 from colliders into floating point values
 globalhl = np.genfromtxt('colliders.csv', delimiter=',', dtype=None, max_rows=1, encoding='utf-8')
 lat0 = float(globalhl[0].strip().split(" ")[1])
 lon0 = float(globalhl[1].strip().split(" ")[1])
-{% endhighlight %}
-
+```
 
 
 #### 2. Set your current local position
